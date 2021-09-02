@@ -19,9 +19,9 @@ namespace InfoRutas.Backend.Repository
         Task<T> GetByIdAsync(int id);
         Task<T> FindAsync(Expression<Func<T, bool>> condition);
         Task<IEnumerable<T>> GetAllAsync();
-        Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> condition = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null);
+        Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> condition = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "");
         Task<int> CountCriteriaAsync(Expression<Func<T, bool>> filter);
-        Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter,
+        Task<List<T>> GetAllPagedAsync(Expression<Func<T, bool>> filter,
                                         Expression<Func<T, object>> orderBy = null,
                                         bool orderAscending = true,
                                         int? skip = null,

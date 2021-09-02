@@ -10,13 +10,44 @@ namespace InfoRutas.Backend.Repository
         private readonly InfoRutasDbContext _context;
         private readonly ILogger _logger;
 
+        private IRepository<Categoria> _categoriaRepository;
+        private IRepository<Comentario> _comentarioRepository;
+        private IRepository<Pdi> _pdiRepository;
         private IRepository<Ruta> _rutaRepository;
         private IRepository<Tramo> _tramoRepository;
+        private IRepository<Usuario> _usuarioRepository;
 
         public UnitOfWork(InfoRutasDbContext context, ILoggerFactory loggerFactory)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context)); ;
             _logger = loggerFactory.CreateLogger("logs");
+        }
+
+        public IRepository<Categoria> CategoriaRepository
+        {
+            get
+            {
+                return _categoriaRepository
+                    ?? (_categoriaRepository = new Repository<Categoria>(_context, _logger));
+            }
+        }
+
+        public IRepository<Comentario> ComentarioRepository
+        {
+            get
+            {
+                return _comentarioRepository
+                    ?? (_comentarioRepository = new Repository<Comentario>(_context, _logger));
+            }
+        }
+
+        public IRepository<Pdi> PdiRepository
+        {
+            get
+            {
+                return _pdiRepository
+                    ?? (_pdiRepository = new Repository<Pdi>(_context, _logger));
+            }
         }
 
         public IRepository<Ruta> RutaRepository
@@ -34,6 +65,15 @@ namespace InfoRutas.Backend.Repository
             {
                 return _tramoRepository
                     ?? (_tramoRepository = new Repository<Tramo>(_context, _logger));
+            }
+        }
+
+        public IRepository<Usuario> UsuarioRepository
+        {
+            get
+            {
+                return _usuarioRepository
+                    ?? (_usuarioRepository = new Repository<Usuario>(_context, _logger));
             }
         }
 

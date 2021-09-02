@@ -15,5 +15,14 @@ namespace InfoRutas.Backend.Domain
         public Ruta Ruta { get; set; }
 
         public IEnumerable<Pdi> PDIs { get; set; }
+
+        public Tramo(int id, string nombre, int orden, string informe, DateTime FechaInforme, int rutaId)
+        {
+            Id = id;
+            Nombre = nombre;
+            Orden = orden;
+            Informe = informe;
+            RutaId = rutaId;
+        }
     }
 }

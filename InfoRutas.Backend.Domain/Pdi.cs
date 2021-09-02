@@ -21,9 +21,21 @@ namespace InfoRutas.Backend.Domain
         public int UsuarioId { get; set; }
         public Usuario Usuario { get; set; }
 
-        public Pdi()
+        public int Orden { get; set; }
+
+        public Pdi(int id, string nombre, decimal latitud, decimal longitud, bool esAporte, bool inicio, bool fin, int categoriaId, int tramoId, int usuarioId, int orden)
         {
-        
+            Id = id;
+            Nombre = nombre;
+            Latitud = latitud;
+            Longitud = longitud;
+            EsAporte = esAporte;
+            Inicio = inicio;
+            Fin = fin;
+            CategoriaId = categoriaId;
+            TramoId = tramoId;
+            UsuarioId = usuarioId;
+            Orden = orden;
         }
     }
 }

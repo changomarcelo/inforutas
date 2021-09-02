@@ -23,6 +23,12 @@ namespace InfoRutas.Backend.Repository.EntityConfigurations
                     "La Ruta Nacional Nº 40 «Libertador General Don José de San Martín»1 es una carretera de Argentina cuyo recorrido se extiende desde el cabo Vírgenes, Santa Cruz hasta el límite con Bolivia en la ciudad de La Quiaca, en Jujuy.",
                     40,
                     "AR",
+                    5194),
+                new Ruta(2,
+                    "Ruta Nacional 7",
+                    "La Ruta 7 va de Buenos Aires hasta el límite con Chile, atravesando ciudades de importancia como Chacabuco, Junin, San Luis y Mendoza",
+                    7,
+                    "AR",
                     5194)
             );
         }

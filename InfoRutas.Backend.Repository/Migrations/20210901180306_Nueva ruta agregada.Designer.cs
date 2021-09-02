@@ -3,15 +3,17 @@ using System;
 using InfoRutas.Backend.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace InfoRutas.Backend.Repository.Migrations
 {
     [DbContext(typeof(InfoRutasDbContext))]
-    partial class InfoRutasDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210901180306_Nueva ruta agregada")]
+    partial class Nuevarutaagregada
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -177,10 +179,6 @@ namespace InfoRutas.Backend.Repository.Migrations
                         .HasColumnType("character varying(100)")
                         .HasColumnName("nombre");
 
-                    b.Property<int>("Orden")
-                        .HasColumnType("integer")
-                        .HasColumnName("orden");
-
                     b.Property<int>("TramoId")
                         .HasColumnType("integer")
                         .HasColumnName("tramo_id");
@@ -202,36 +200,6 @@ namespace InfoRutas.Backend.Repository.Migrations
                         .HasDatabaseName("ix_pdi_usuario_id");
 
                     b.ToTable("pdi");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoriaId = 1,
-                            EsAporte = false,
-                            Fin = false,
-                            Inicio = true,
-                            Latitud = 0m,
-                            Longitud = 0m,
-                            Nombre = "La Quiaca",
-                            Orden = 1,
-                            TramoId = 9,
-                            UsuarioId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CategoriaId = 1,
-                            EsAporte = false,
-                            Fin = true,
-                            Inicio = false,
-                            Latitud = 0m,
-                            Longitud = 0m,
-                            Nombre = "Rio Gallegos",
-                            Orden = 2,
-                            TramoId = 9,
-                            UsuarioId = 1
-                        });
                 });
 
             modelBuilder.Entity("InfoRutas.Backend.Domain.Ruta", b =>
@@ -331,89 +299,6 @@ namespace InfoRutas.Backend.Repository.Migrations
                         .HasDatabaseName("ix_tramo_ruta_id");
 
                     b.ToTable("tramo");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            FechaInforme = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Informe = "Autovía",
-                            Nombre = "Buenos Aires - Junin",
-                            Orden = 1,
-                            RutaId = 2
-                        },
-                        new
-                        {
-                            Id = 2,
-                            FechaInforme = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Informe = "Ruta en buen estado",
-                            Nombre = "Junin - San Luis",
-                            Orden = 2,
-                            RutaId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            FechaInforme = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Informe = "Autovía en su mayor parte",
-                            Nombre = "San Luis - Mendoza",
-                            Orden = 4,
-                            RutaId = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            FechaInforme = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Informe = "Ruta",
-                            Nombre = "Rio Gallegos - El Calafate",
-                            Orden = 1,
-                            RutaId = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            FechaInforme = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Informe = "Ruta",
-                            Nombre = "El Calafate - Bariloche",
-                            Orden = 2,
-                            RutaId = 1
-                        },
-                        new
-                        {
-                            Id = 6,
-                            FechaInforme = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Informe = "Ruta",
-                            Nombre = "Bariloche - San Martín de los Andes",
-                            Orden = 3,
-                            RutaId = 2
-                        },
-                        new
-                        {
-                            Id = 7,
-                            FechaInforme = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Informe = "Ruta",
-                            Nombre = "San Martín de los Andes - Malargüe",
-                            Orden = 4,
-                            RutaId = 2
-                        },
-                        new
-                        {
-                            Id = 8,
-                            FechaInforme = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Informe = "Ruta",
-                            Nombre = "Malargüe - Mendoza",
-                            Orden = 5,
-                            RutaId = 2
-                        },
-                        new
-                        {
-                            Id = 9,
-                            FechaInforme = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Informe = "Ruta",
-                            Nombre = "Mendoza - La Quiaca",
-                            Orden = 6,
-                            RutaId = 2
-                        });
                 });
 
             modelBuilder.Entity("InfoRutas.Backend.Domain.Usuario", b =>
@@ -470,14 +355,12 @@ namespace InfoRutas.Backend.Repository.Migrations
                     b.HasOne("InfoRutas.Backend.Domain.Pdi", "Pdi")
                         .WithMany()
                         .HasForeignKey("PdiId")
-                        .HasConstraintName("fk_comentario_pdi_pdi_id")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasConstraintName("fk_comentario_pdi_pdi_id");
 
                     b.HasOne("InfoRutas.Backend.Domain.Tramo", "Tramo")
                         .WithMany()
                         .HasForeignKey("TramoId")
-                        .HasConstraintName("fk_comentario_tramo_tramo_id")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasConstraintName("fk_comentario_tramo_tramo_id");
 
                     b.HasOne("InfoRutas.Backend.Domain.Usuario", "Usuario")
                         .WithMany()

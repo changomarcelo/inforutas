@@ -12,11 +12,20 @@ namespace InfoRutas.Backend.Repository.EntityConfigurations
             builder.Property(p => p.Fecha)
                 .IsRequired(true);
 
-            builder.HasOne(x => x.Usuario)
+            builder.HasOne(c => c.Usuario)
                 .WithMany()
-                .HasForeignKey(x => x.UsuarioId)
+                .HasForeignKey(c => c.UsuarioId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            builder.HasOne(c => c.Pdi)
+                .WithMany()
+                .HasForeignKey(c => c.PdiId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(c => c.Tramo)
+                .WithMany()
+                .HasForeignKey(c => c.TramoId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

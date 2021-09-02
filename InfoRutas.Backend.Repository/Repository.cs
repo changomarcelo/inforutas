@@ -151,12 +151,18 @@ namespace InfoRutas.Backend.Repository
         /// <param name="orderBy">Order clause</param>
         /// <returns>List of Entities</returns>
         public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> condition = null,
-                                                        Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null)
+                                                        Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "")
         {
             IQueryable<T> query = dbSet;
 
             if (condition != null)
                 query = query.Where(condition);
+
+            foreach (var includeProperty in includeProperties.Split
+                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
 
             if (orderBy != null)
                 query = orderBy(query);
@@ -183,7 +189,7 @@ namespace InfoRutas.Backend.Repository
         /// <param name="skip">Quantity of elements to skip</param>
         /// <param name="take">Quantity of elements to return</param>
         /// <returns>List of entities</returns>
-        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter,
+        public async Task<List<T>> GetAllPagedAsync(Expression<Func<T, bool>> filter,
                                                            Expression<Func<T, object>> orderBy = null,
                                                            bool orderAscending = true,
                                                            int? skip = null,
@@ -203,6 +209,7 @@ namespace InfoRutas.Backend.Repository
 
             return await t.ToListAsync();
         }
+
         #endregion
 
         private string GetCurrentUser()

@@ -18,6 +18,10 @@ namespace InfoRutas.Backend.Repository.EntityConfigurations
                 .HasForeignKey(x => x.TramoId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            builder.HasData(
+                new Pdi(1, "La Quiaca", 0, 0, false, true, false, 1, 9, 1, 1),
+                new Pdi(2, "Rio Gallegos", 0, 0, false, false, true, 1, 9, 1, 2)
+             );
         }
     }
 }

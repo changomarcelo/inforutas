@@ -14,6 +14,7 @@
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
     <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL" />
     <None Remove="EFCore.NamingConventions" />
+    <None Remove="DTO\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.9" />
@@ -35,5 +36,8 @@
     <ProjectReference Include="..\InfoRutas.Backend.Repository\InfoRutas.Backend.Repository.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DTOs\" />
   </ItemGroup>
 </Project>

@@ -23,5 +23,7 @@ namespace InfoRutas.Backend.Domain
             Jurisdiccion = jurisdiccion;
             Longitud = longitud;
         }
+
+        public Ruta() { }
     }
 }
