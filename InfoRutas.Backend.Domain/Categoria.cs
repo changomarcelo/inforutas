@@ -11,8 +11,8 @@ namespace InfoRutas.Backend.Domain
 
         public Categoria(int id, string nombre)
         {
-            Id = id;
-            Nombre = nombre;
+            this.Id = id;
+            this.Nombre = nombre;
         }
     }
 }

@@ -37,7 +37,7 @@ namespace InfoRutas.Backend.Repository
         /// </summary>
         /// <param name="id">Primary Key value</param>
         /// <returns>Entity found; otherwise, null</returns>
-        public virtual T GetById(int id)
+        public virtual T Find(int id)
         {
             return dbSet.Find(id);
         }
@@ -52,15 +52,6 @@ namespace InfoRutas.Backend.Repository
         public T Find(Expression<Func<T, bool>> condition)
         {
             return dbSet.SingleOrDefault(condition);
-        }
-
-        /// <summary>
-        /// Obtains a list of all the Entities
-        /// </summary>
-        /// <returns>List of Entities</returns>
-        public virtual IEnumerable<T> GetAll()
-        {
-            return dbSet.ToList();
         }
 
         /// <summary>
@@ -118,13 +109,13 @@ namespace InfoRutas.Backend.Repository
         /// </summary>
         /// <param name="id">Primary Key value</param>
         /// <returns>Entity found; otherwise, null</returns>
-        public virtual async Task<T> GetByIdAsync(int id)
+        public virtual async Task<T> FindAsync(int id)
         {
             return await dbSet.FindAsync(id);
         }
 
         /// <summary>
-        /// Finds a single Entity that matches a condition asynchronously. If more than one
+        /// Finds a single Entity that matches a condition. If more than one
         /// element satisfies the condition, an InvalidOperationException is
         /// thrown.
         /// </summary>
@@ -132,16 +123,7 @@ namespace InfoRutas.Backend.Repository
         /// <returns>Entity found; otherwise, null</returns>
         public async Task<T> FindAsync(Expression<Func<T, bool>> condition)
         {
-            return await dbSet.SingleOrDefaultAsync(condition);
-        }
-
-        /// <summary>
-        /// Obtains a list of all the Entities asynchronoulsy
-        /// </summary>
-        /// <returns>List of Entities</returns>
-        public virtual async Task<IEnumerable<T>> GetAllAsync()
-        {
-            return await dbSet.ToListAsync();
+            return await dbSet.SingleOrDefaultAsync<T>(condition);
         }
 
         /// <summary>
@@ -151,7 +133,8 @@ namespace InfoRutas.Backend.Repository
         /// <param name="orderBy">Order clause</param>
         /// <returns>List of Entities</returns>
         public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> condition = null,
-                                                        Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "")
+                                                        Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+                                                        string includeProperties = "")
         {
             IQueryable<T> query = dbSet;
 

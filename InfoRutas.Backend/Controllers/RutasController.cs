@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 namespace InfoRutas.Backend.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class RutasController : ControllerBase
     {
         private readonly ILogger<RutasController> _logger;
@@ -59,6 +59,10 @@ namespace InfoRutas.Backend.Controllers
         public async Task<ActionResult> Post(RutaDTO dto)
         {
             //TODO: validar duplicados número+jurisdicción
+            if (_unitOfWork.RutaRepository.GetAll(r => r.Numero == dto.Numero && r.Jurisdiccion == dto.Jurisdiccion).Any())
+            {
+                return BadRequest(string.Format("Ruta duplicada. Ya existe una ruta Nº {0} para la jurisdicción {1}", dto.Numero, dto.Jurisdiccion));
+            }
 
             var ruta = new Ruta
             {
@@ -89,7 +93,7 @@ namespace InfoRutas.Backend.Controllers
                 return BadRequest();
             }
 
-            var ruta = await _unitOfWork.RutaRepository.GetByIdAsync(id);
+            var ruta = await _unitOfWork.RutaRepository.FindAsync(id);
             if (ruta == null)
             {
                 return NotFound();
@@ -121,7 +125,7 @@ namespace InfoRutas.Backend.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var ruta = await _unitOfWork.RutaRepository.GetByIdAsync(id);
+            var ruta = await _unitOfWork.RutaRepository.FindAsync(id);
 
             if (ruta == null)
             {

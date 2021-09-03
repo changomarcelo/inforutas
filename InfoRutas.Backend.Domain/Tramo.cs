@@ -18,11 +18,11 @@ namespace InfoRutas.Backend.Domain
 
         public Tramo(int id, string nombre, int orden, string informe, DateTime FechaInforme, int rutaId)
         {
-            Id = id;
-            Nombre = nombre;
-            Orden = orden;
-            Informe = informe;
-            RutaId = rutaId;
+            this.Id = id;
+            this.Nombre = nombre;
+            this.Orden = orden;
+            this.Informe = informe;
+            this.RutaId = rutaId;
         }
     }
 }

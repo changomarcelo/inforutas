@@ -15,13 +15,13 @@ namespace InfoRutas.Backend.Domain
 
         public Usuario(int id, string nombre, string email, string passwordHash, int nivel)
         {
-            Id = id;
-            Nombre = nombre ?? throw new ArgumentNullException(nameof(email));
-            Email = email ?? throw new ArgumentNullException(nameof(email));
-            Activo = true;
+            this.Id = id;
+            this.Nombre = nombre ?? throw new ArgumentNullException(nameof(email));
+            this.Email = email ?? throw new ArgumentNullException(nameof(email));
+            this.Activo = true;
             if (nivel > 3) throw new ArgumentException("El nivel máximo es 3", nameof(nivel));
-            Nivel = nivel;
-            PasswordHash = passwordHash ?? throw new ArgumentNullException(nameof(passwordHash));
+            this.Nivel = nivel;
+            this.PasswordHash = passwordHash ?? throw new ArgumentNullException(nameof(passwordHash));
         }
 
         public static string GetHash(HashAlgorithm hashAlgorithm, string input)

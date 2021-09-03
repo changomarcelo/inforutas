@@ -12,6 +12,7 @@ namespace InfoRutas.Backend.DTOs
         public bool EsAporte { get; set; }
         public bool Inicio { get; set; }
         public bool Fin { get; set; }
+        public bool Aprobado { get; set; }
 
         public int CategoriaId { get; set; }
         public CategoriaDTO Categoria { get; set; }
@@ -36,6 +37,7 @@ namespace InfoRutas.Backend.DTOs
             CategoriaId = pdi.CategoriaId;
             TramoId = pdi.TramoId;
             Orden = pdi.Orden;
+            Aprobado = pdi.Aprobado;
         }
     }
 }

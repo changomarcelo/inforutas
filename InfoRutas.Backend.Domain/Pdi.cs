@@ -11,6 +11,7 @@ namespace InfoRutas.Backend.Domain
         public bool EsAporte { get; set; }
         public bool Inicio { get; set; }
         public bool Fin { get; set; }
+        public bool Aprobado { get; set; }
 
         public int CategoriaId { get; set; }
         public Categoria Categoria { get; set; }
@@ -23,19 +24,22 @@ namespace InfoRutas.Backend.Domain
 
         public int Orden { get; set; }
 
-        public Pdi(int id, string nombre, decimal latitud, decimal longitud, bool esAporte, bool inicio, bool fin, int categoriaId, int tramoId, int usuarioId, int orden)
+        public Pdi(int id, string nombre, decimal latitud, decimal longitud, bool esAporte, bool inicio, bool fin, int categoriaId, int tramoId, int usuarioId, int orden, bool aprobado)
         {
-            Id = id;
-            Nombre = nombre;
-            Latitud = latitud;
-            Longitud = longitud;
-            EsAporte = esAporte;
-            Inicio = inicio;
-            Fin = fin;
-            CategoriaId = categoriaId;
-            TramoId = tramoId;
-            UsuarioId = usuarioId;
-            Orden = orden;
+            this.Id = id;
+            this.Nombre = nombre;
+            this.Latitud = latitud;
+            this.Longitud = longitud;
+            this.EsAporte = esAporte;
+            this.Inicio = inicio;
+            this.Fin = fin;
+            this.CategoriaId = categoriaId;
+            this.TramoId = tramoId;
+            this.UsuarioId = usuarioId;
+            this.Orden = orden;
+            this.Aprobado = aprobado;
         }
+
+        public Pdi() { }
     }
 }
