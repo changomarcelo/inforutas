@@ -36,7 +36,7 @@ namespace InfoRutas.Backend.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<RutaDTO>> Get(int id)
         {
-            var rutas = await _unitOfWork.RutaRepository.GetAllAsync(r => r.Id == id, null, "Tramos");
+            var rutas = await _unitOfWork.RutaRepository.GetAllAsync(r => r.Id == id, null, "Tramos,Tramos.PDIs");
             if (rutas == null)
             {
                 return NotFound();

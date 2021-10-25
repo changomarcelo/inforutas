@@ -18,6 +18,8 @@ namespace InfoRutas.Backend
 {
     public class Startup
     {
+        readonly string CorsPolicy = "CorsPolicy";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -45,11 +47,23 @@ namespace InfoRutas.Backend
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "TodoApi", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "InfoRutas API", Version = "v1" });
             });
 
             // Adding the Unit of work to the Dependency Injection container
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            // Configure CORS
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: CorsPolicy,
+                                  builder =>
+                                  {
+                                      builder.AllowAnyOrigin()
+                                      .AllowAnyHeader()
+                                      .AllowAnyMethod();
+                                  });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,6 +79,8 @@ namespace InfoRutas.Backend
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(CorsPolicy);
 
             app.UseAuthorization();
 

@@ -23,6 +23,9 @@ namespace InfoRutas.Backend.Domain
             this.Orden = orden;
             this.Informe = informe;
             this.RutaId = rutaId;
+            this.PDIs = new List<Pdi>();
         }
+
+        public Tramo () { }
     }
 }

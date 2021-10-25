@@ -3,15 +3,17 @@ using System;
 using InfoRutas.Backend.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace InfoRutas.Backend.Repository.Migrations
 {
     [DbContext(typeof(InfoRutasDbContext))]
-    partial class InfoRutasDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210908201247_Agregado columna aprobado en comentarios")]
+    partial class Agregadocolumnaaprobadoencomentarios
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -12,6 +12,9 @@ namespace InfoRutas.Backend.DTOs
         public string Informe { get; set; }
         public DateTime FechaInforme { get; set; }
 
+        public int RutaId { get; set; }
+        public RutaDTO Ruta { get; set; }
+
         public List<PdiDTO> PDIs { get; set; }
 
         public TramoDTO(Tramo tramo)
@@ -21,13 +24,17 @@ namespace InfoRutas.Backend.DTOs
             Orden = tramo.Orden;
             Informe = tramo.Informe;
             FechaInforme = tramo.FechaInforme;
+            RutaId = tramo.RutaId;
 
             PDIs = new List<PdiDTO>();
 
-            foreach (var pdi in tramo.PDIs)
+            if (tramo.PDIs != null)
             {
-                var pdiDTO = new PdiDTO(pdi);
-                PDIs.Add(pdiDTO);
+                foreach (var pdi in tramo.PDIs)
+                {
+                    var pdiDTO = new PdiDTO(pdi);
+                    PDIs.Add(pdiDTO);
+                }
             }
         }
     }
